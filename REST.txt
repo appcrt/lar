@@ -1,0 +1,42 @@
+===========================================
+
+php-rpc
+
+RPC - remote Procedure call
+
+function getPost($id){
+
+}
+
+===========================================
+
+php-soap
+
+SOAP - Simple Object Access Protocol
+
+===========================================
+
+//jsonRPC
+
+JSON
+
+var m = {
+    id:5,
+    title:"some title"
+}
+
+===========================================
+
+REST - Architect style
+
+GET
+POST
+PUT
+DELETE
+CANCEL[+-]
+
+2xx - успех
+5xx - ошибка сервера
+4xx - ошибка клиента
+
+-------------------------------------------
