@@ -53,7 +53,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">Описание</div>
                     </div>
-                    <input name="description" value="{{ $item->description }}" type="text" class="form-control" placeholder="Введите Описание">
+                    <input name="description" value="{{ old('description',$item->description) }}" type="text" class="form-control" placeholder="Введите Описание">
                     <div class="valid-tooltip">
                         great!
                     </div>
