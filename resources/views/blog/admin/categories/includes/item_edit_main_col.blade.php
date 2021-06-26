@@ -20,7 +20,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">Идентификатор</div>
                     </div>
-                    <input type="text" value="{{ $item->slug }}" name="slug" class="form-control" placeholder="Введите идентификатор" required>
+                    <input type="text" value="{{ $item->slug }}" name="slug" class="form-control" placeholder="Введите идентификатор" >
                     <div class="valid-tooltip">
                         great!
                     </div>
