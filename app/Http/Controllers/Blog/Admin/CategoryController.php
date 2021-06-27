@@ -12,6 +12,14 @@ use Illuminate\Support\Str;
 
 class CategoryController extends BaseController
 {
+    private $blogCategoryRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +27,7 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $paginator = BlogCategory::paginate(5);
+        $paginator = $this->blogCategoryRepository->getAllWithPaginate(5);
 
         return view('blog.admin.categories.index',compact('paginator'));
     }
@@ -32,7 +40,7 @@ class CategoryController extends BaseController
     public function create()
     {
         $item         = new BlogCategory();
-        $categoryList = BlogCategory::all();
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
 
         return view('blog.admin.categories.edit',compact('item','categoryList'));
     }
@@ -77,10 +85,10 @@ class CategoryController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,BlogCategoryRepository $blogCategoryRepository)
+    public function edit($id)
     {
-        $item         = $blogCategoryRepository->getEdit($id);
-        $categoryList = $blogCategoryRepository->getForComboBox();
+        $item         = $this->blogCategoryRepository->getEdit($id);
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
 
         return view('blog.admin.categories.edit',compact('item','categoryList'));
     }

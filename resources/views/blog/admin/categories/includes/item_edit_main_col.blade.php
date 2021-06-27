@@ -37,7 +37,7 @@
                     <select name="parent_id" class="custom-select" required>
                         <option value="">- Выберите родителя -</option>
                         @foreach($categoryList as $categoryOption)
-                            <option value="{{$categoryOption->id}}" @if($categoryOption->id == $item->parent_id) selected @endif>{{$categoryOption->id}}. {{$categoryOption->title}}</option>
+                            <option value="{{$categoryOption->id}}" @if($categoryOption->id == $item->parent_id) selected @endif>{{ $categoryOption->id_title }}</option>
                         @endforeach
                     </select>
                     <div class="valid-tooltip">

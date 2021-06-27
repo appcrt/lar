@@ -15,11 +15,20 @@ class BlogCategoryRepository extends CoreRepository
 
     public function getForComboBox()
     {
-        return $this->startConditions()->all();
+        $fields = implode(',',['id','CONCAT(id,". ",title) AS id_title']);
+
+        $result = $this->startConditions()->selectRaw($fields)->toBase()->get();
+        return $result;
     }
 
     protected function getModelClass()
     {
         return Model::class;
+    }
+
+    public function getAllWithPaginate($perPage)
+    {
+        $columns = ['id','title','parent_id'];
+        return $this->startConditions()->select($columns)->paginate($perPage);
     }
 }
