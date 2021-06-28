@@ -20,11 +20,11 @@
                     <tbody>
                     @foreach($paginator as $item)
                         <tr @if(!$item->is_published) style="background-color: #eee;" @endif>
-                            <th scope="row">#</th>
-                            <td>{{ $item->user_id }}</td>
-                            <td>{{ $item->category_id }}</td>
+                            <th scope="row"># {{ $item->id }}</th>
+                            <td>{{ $item->user->name }}</td>
+                            <td>{{ $item->category->title }}</td>
                             <td><a href="{{ route('blog.admin.posts.edit',$item->id) }}">{{ $item->title }}</a></td>
-                            <td>{{ $item->published_at ? \Illuminate\Support\Carbon::parse($item->published_at)->format('d.m H:i') : '' }}</td>
+                            <td>{{ $item->published_at ? \Illuminate\Support\Carbon::parse($item->published_at)->format('d.M H:i') : '' }}</td>
                         </tr>
                     @endforeach
                     </tbody>
