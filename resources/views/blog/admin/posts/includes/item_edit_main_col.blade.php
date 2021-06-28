@@ -1,6 +1,7 @@
 <div class="container">
     <div class="col-md-12">
         <div class="card p-5">
+            <input type="hidden" name="is_published" value="1">
             <div class="form-row">
                 <div class="input-group col-md-12 mb-3">
                     <div class="input-group-prepend">
