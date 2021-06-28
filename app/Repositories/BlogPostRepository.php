@@ -9,6 +9,18 @@ use Illuminate\Database\Eloquent\Collection;
 class BlogPostRepository extends CoreRepository
 {
 
+    public function getEdit($id){
+        return $this->startConditions()->find($id);
+    }
+
+    public function getForComboBox()
+    {
+        $fields = implode(',',['id','CONCAT(id,". ",title) AS id_title']);
+
+        $result = $this->startConditions()->selectRaw($fields)->toBase()->get();
+        return $result;
+    }
+
     public function getAllWithPaginate($perPage)
     {
 

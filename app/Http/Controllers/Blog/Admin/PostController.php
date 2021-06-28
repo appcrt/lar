@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 use App\Repositories\BlogPostRepository;
+use App\Repositories\BlogCategoryRepository;
 
 class PostController extends BaseController
 {
 
     private $blogPostRepository;
+    private $blogCategoryRepository;
 
     public function __construct()
     {
         parent::__construct();
         $this->blogPostRepository = app(BlogPostRepository::class);
+        $this->blogCategoryRepository = app(BlogCategoryRepository::class);
     }
 
     /**
@@ -68,7 +72,10 @@ class PostController extends BaseController
      */
     public function edit($id)
     {
-        //
+        $item         = $this->blogPostRepository->getEdit($id);
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
+
+        return view('blog.admin.posts.edit',compact('item','categoryList'));
     }
 
     /**
@@ -80,7 +87,7 @@ class PostController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        dd(__METHOD__,$request->all(),$id);
     }
 
     /**
@@ -91,6 +98,6 @@ class PostController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        dd(__METHOD__,$id);
     }
 }
