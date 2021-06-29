@@ -99,7 +99,7 @@ class CategoryController extends BaseController
      */
     public function update(BlogCategoryUpdateRequest $request, $id)
     {
-        $item = BlogCategory::find($id);
+        $item = $this->blogCategoryRepository->getEdit($id);
         if(empty($item))
             return back()->withErrors(['msg' => "Запись {$id} не найдена"])->withInput();
 

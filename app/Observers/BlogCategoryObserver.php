@@ -11,12 +11,11 @@ class BlogCategoryObserver
 
     public function creating(BlogCategory $blogCategory)
     {
-        //
+        $this->setSlug($blogCategory);
     }
 
     public function updating(BlogCategory $blogCategory)
     {
-        $this->setPublishedAt($blogCategory);
         $this->setSlug($blogCategory);
     }
 
@@ -24,13 +23,6 @@ class BlogCategoryObserver
     {
         if(empty($blogCategory->slug)){
             $blogCategory->slug = Str::slug($blogCategory->title);
-        }
-    }
-
-    public function setPublishedAt($blogCategory)
-    {
-        if(empty($blogCategory->published_at) && $blogCategory->is_published){
-            $blogCategory->published_at = Carbon::now();
         }
     }
 
