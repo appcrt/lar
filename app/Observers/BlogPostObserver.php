@@ -10,7 +10,18 @@ class BlogPostObserver
 {
     public function creating(BlogPost $blogPost)
     {
+        $this->setUserId($blogPost);
+        $this->setPublishedAt($blogPost);
+        $this->setHtml($blogPost);
+        $this->setSlug($blogPost);
+    }
 
+    public function setHtml($blogPost)
+    {
+        if($blogPost->isDirty('content_raw')){
+            //markdown
+            $blogPost->content_html = $blogPost->content_raw;
+        }
     }
 
     public function updating(BlogPost $blogPost)
@@ -18,6 +29,14 @@ class BlogPostObserver
         $this->setPublishedAt($blogPost);
         $this->setSlug($blogPost);
     }
+
+    public function setUserId($blogPost)
+    {
+        if(empty($blogPost->user_id)){
+            $blogPost->user_id = BlogPost::UNKNOWN_USER;
+        }
+    }
+
     /**
      * Handle the BlogPost "created" event.
      *
