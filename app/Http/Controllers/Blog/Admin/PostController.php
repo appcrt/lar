@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
-use App\Models\BlogCategory;
-use App\Models\BlogPost;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Repositories\BlogPostRepository;
 use App\Repositories\BlogCategoryRepository;
 use App\Http\Requests\BlogPostUpdateRequest;
-use Illuminate\Support\Str;
 
 class PostController extends BaseController
 {
@@ -96,17 +92,8 @@ class PostController extends BaseController
         if(empty($item))
             return back()->withErrors(['msg' => "Запись {$id} не найдена"])->withInput();
 
-        $data = $request->all();
-
-        if(empty($data['slug'])){
-            $data['slug'] = Str::slug($data['title']);
-        }
-
-        if(empty($item->published_at) && $data['is_published']){
-            $data['published_at'] = Carbon::now();
-        }
-
-        $result = $item->fill($data)->save();
+        $data   = $request->all();
+        $result = $item->update($data);
 
         if($result){
             return redirect()->route('blog.admin.posts.edit',$item->id)->with(['success' => 'Успешно сохранено']);
