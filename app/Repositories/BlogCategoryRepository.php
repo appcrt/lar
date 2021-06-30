@@ -29,6 +29,6 @@ class BlogCategoryRepository extends CoreRepository
     public function getAllWithPaginate($perPage)
     {
         $columns = ['id','title','parent_id'];
-        return $this->startConditions()->select($columns)->paginate($perPage);
+        return $this->startConditions()->select($columns)->with(['parentCategory:id,title'])->paginate($perPage);
     }
 }
