@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\classes\PropertyContainer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class BlogPost extends Model
+class BlogPost extends PropertyContainer
 {
     const UNKNOWN_USER = 1;
 

@@ -32,6 +32,6 @@ class AppServiceProvider extends ServiceProvider
         \Schema::defaultStringLength(191);
         Paginator::useBootstrap();
         BlogCategory::observe(BlogCategoryObserver::class);
-        BlogPost::observe(BlogPostObserver::class);
+        //BlogPost::observe(BlogPostObserver::class);
     }
 }

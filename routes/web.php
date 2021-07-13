@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,4 +41,14 @@ Route::group($groupData,function (){
     $methods = ['index','edit','store','update','create',];
     Route::resource('categories','CategoryController')->only($methods)->names('blog.admin.categories');
     Route::resource('posts','PostController')->except(['show'])->names('blog.admin.posts');
+});
+
+$groupDataPatterns = [
+    'namespace' => 'Designpatterns',
+    'prefix' => '/designpatterns',
+];
+
+Route::group(['prefix' => 'designpatterns'],function (){
+    Route::get('/propertycontroller/', [\App\Http\Controllers\DesignpatternsController::class, 'propertycontroller']);
+    Route::get('/delegation/', [\App\Http\Controllers\DesignpatternsController::class, 'delegation']);
 });
